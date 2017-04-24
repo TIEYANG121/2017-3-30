@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{
+			width:100px;
+			height:100px;
+			border:1px solid red;
+		}
+		.bg{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<button class="btn">变色</button>
+
+	<script>
+		var btn = document.querySelector('.btn');
+		var box = document.querySelector('.box');
+		btn.onclick = function(e){
+			addClass(box,"bg");
+			console.log(e);
+			e.stopPropagation();
+		}
+
+		document.querySelector('body').onclick = function(){
+			console.log('测试')
+			removeClass(box,"bg");
+		}
+
+
+		function removeClass(dom,str){
+			var arr = dom.className.split(" ");
+			for(var i = 0;i<arr.length;i++){
+				if(arr[i] === str){
+					arr.splice(i,1);
+
+				}
+			}
+			dom.className = arr.join(" ");
+		}
+
+		function addClass(dom,str){
+			var newClassname = "";
+			if(dom.className){
+				var cname = dom.className;
+				newClassname = cname + " " + str;
+			}else{
+				newClassname = str;
+			}
+			dom.className = newClassname;
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.numberlist li{
+			width:20px;
+			height:20px;
+			border:1px solid #aaa;
+			float: left;
+			line-height: 20px;
+			text-align: center;
+			list-style: none;
+			cursor: pointer;
+		}
+		.numberlist .active{
+			background-color: #f00;
+		}
+	</style>
+</head>
+<body>
+	<img src="images/1.jpg" alt="">
+	<ul class="numberlist">
+		<li class="active">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+
+	<script>
+		var oImg = document.querySelector('img');
+		var oLi = document.querySelectorAll('.numberlist li');
+		var srclist = [
+			"images/1.jpg",
+			"images/2.jpg",
+			"images/3.jpg",
+			"images/4.jpg",
+			"images/5.jpg"
+		];
+		for(var i = 0;i<oLi.length;i++){
+			oLi[i].index = i;
+			oLi[i].onclick = function(){
+				oImg.src = srclist[this.index];
+				addClass(this,"active");
+				var arr = siblings(this);
+				for(var j = 0;j<arr.length;j++){
+					removeClass(arr[j],"active");
+				}
+			}
+		}
+
+
+		function removeClass(dom,str){
+			var arr = dom.className.split(" ");
+			for(var i = 0;i<arr.length;i++){
+				if(arr[i] === str){
+					arr.splice(i,1);
+
+				}
+			}
+			dom.className = arr.join(" ");
+		}
+
+		function addClass(dom,str){
+			var newClassname = "";
+			if(dom.className){
+				var cname = dom.className;
+				newClassname = cname + " " + str;
+			}else{
+				newClassname = str;
+			}
+			dom.className = newClassname;
+		}
+
+		function siblings(dom){
+			var newArr = [];
+			var parent = dom.parentNode;
+			var children = parent.children;
+			for(var i = 0;i<children.length;i++){
+				if(children[i] !== dom){
+					newArr.push(children[i])
+				}
+			}
+			return newArr;
+		}
+
+		var obj = {
+			
+		}
+
+	</script>
+</body>
+</html>

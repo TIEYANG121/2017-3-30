@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button>添加</button>
+	<ul class="numberlist">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+
+	<script>
+		var btn = document.querySelector('button');
+
+		btn.onclick = function(){
+			var oLi = document.createElement("li");
+			oLi.innerHTML = "6"
+			var oUl = document.querySelector('.numberlist');
+			oUl.appendChild(oLi);
+		}
+	</script>
+</body>
+</html>
